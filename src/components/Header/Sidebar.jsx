@@ -71,13 +71,13 @@ function Sidebar() {
     return (
         <>
             <div className="sm:block hidden">
-                <div className="text-white lg:w-56 md:w-44 w-16 sm:p-3 p-2 border-slate-600 border-r h-[93vh] flex flex-col justify-between">
+                <div className="text-white lg:w-60 md:w-44 w-16 sm:p-3 p-2 border-slate-300 border-r h-[89vh] flex flex-col justify-between">
                     <div className="space-y-4 mt-5">
                         {sidebarTopItems.map((item) => (
                             <Link
                                 to={item.url}
                                 key={item.title}
-                                className="flex items-center gap-2 justify-center sm:justify-start hover:bg-purple-500 cursor-pointer py-1 px-2 border border-slate-600"
+                                className="flex items-center gap-2 justify-center sm:justify-start hover:bg-[#e55542] cursor-pointer py-1 px-2 border border-slate-500"
                             >
                                 {item.icon}
                                 <span className="text-base hidden md:block">
@@ -88,13 +88,13 @@ function Sidebar() {
                     </div>
 
                     <div className="space-y-4 mb-10">
-                        <div className="flex items-center gap-2 justify-center sm:justify-start hover:bg-purple-500 cursor-pointer py-1 px-2 border border-slate-600">
+                        <div className="flex items-center gap-2 justify-center sm:justify-start hover:bg-[#e55542] cursor-pointer py-1 px-2 border border-slate-500">
                             <MdOutlineContactSupport size={25} />
                             <span className="text-base hidden md:block">
                                 Support
                             </span>
                         </div>
-                        <div className="flex items-center gap-2 justify-center sm:justify-start hover:bg-purple-500 cursor-pointer py-1 px-2 border border-slate-600">
+                        <div className="flex items-center gap-2 justify-center sm:justify-start hover:bg-[#e55542] cursor-pointer py-1 px-2 border border-slate-500">
                             <CiSettings size={25} />
                             <span className="text-base hidden md:block">
                                 Settings

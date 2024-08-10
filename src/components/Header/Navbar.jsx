@@ -113,7 +113,7 @@ function Navbar() {
                                     <Link
                                         to={item.url}
                                         key={item.title}
-                                        className="flex items-center border border-slate-500 gap-5 px-3 py-1 hover:bg-purple-500"
+                                        className="flex items-center border border-slate-500 gap-5 px-3 py-1 hover:bg-[#e55542]"
                                     >
                                         <div>{item.icon}</div>
                                         <span className="text-lg">
