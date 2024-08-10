@@ -11,6 +11,7 @@ import {
     SlMenu,
 } from "../icons.js";
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
     const [toggleMenu, setToggleMenu] = useState(false);
@@ -108,18 +109,21 @@ function Navbar() {
                         </div>
 
                         <div className="flex flex-col justify-between h-full py-5 px-3 j">
-                            <div className="space-y-5">
+                            <div className="sflex flex-col gap-5">
                                 {sidePanelItems.map((item) => (
-                                    <Link
+                                    <NavLink
                                         to={item.url}
                                         key={item.title}
-                                        className="flex items-center border border-slate-500 gap-5 px-3 py-1 hover:bg-[#e55542]"
+                                        onClick={() => setToggleMenu(prev => !prev)}
+                                        className={({isActive}) => isActive ? "bg-[#e55542]": ""}
                                     >
-                                        <div>{item.icon}</div>
-                                        <span className="text-lg">
-                                            {item.title}
-                                        </span>
-                                    </Link>
+                                        <div className="flex items-center border border-slate-500 gap-5 px-3 py-1 hover:bg-[#e55542]">
+                                            <div>{item.icon}</div>
+                                            <span className="text-lg">
+                                                {item.title}
+                                            </span>
+                                        </div>
+                                    </NavLink>
                                 ))}
                             </div>
 
