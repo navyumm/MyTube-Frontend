@@ -11,7 +11,7 @@ function ChannelHeader({
 }) {
   return (
     <>
-      <div className="w-full h-[83.3vh] text-white">
+      <div className="w-full h-[83vh] text-white">
         {/* coverImage section */}
         <section className="w-full">
           <img
