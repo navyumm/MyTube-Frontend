@@ -8,7 +8,7 @@ import HomeSkeleton from "../skeleton/HomeSkeleton";
 
 function HomePage() {
     const dispatch = useDispatch();
-    const videos = useSelector((state) => state.video?.videos?.docs);
+    const videos = useSelector((state) => state.video?.videos);
     const loading = useSelector((state) => state.video?.loading);
 
     useEffect(() => {
@@ -27,13 +27,13 @@ function HomePage() {
                         key={video._id}
                     >
                         <VideoList
-                            avatar={video.ownerDetails?.avatar.url}
+                            avatar={video.ownerDetails?.avatar}
                             duration={video.duration}
                             title={video.title}
                             thumbnail={video.thumbnail?.url}
                             createdAt={video.createdAt}
                             views={video.views}
-                            channelName={video.ownerDetails.username}
+                            channelName={video.ownerDetails?.username}
                             channelId={video.owner}
                         />
                     </Link>

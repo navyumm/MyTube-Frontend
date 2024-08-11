@@ -7,14 +7,14 @@ import { Link } from "react-router-dom";
 function MyChannelVideos() {
     const dispatch = useDispatch();
     const userId = useSelector((state) => state.auth?.userData?._id);
-    const videos = useSelector((state) => state.video?.videos?.docs);
+    const videos = useSelector((state) => state.video?.videos);
 
     useEffect(() => {
         dispatch(getAllVideos(userId));
     }, [dispatch, userId]);
     return (
         <>
-            <div className="grid lg:grid-cols-3 sm:grid-cols-2 text-white border">
+            <div className="grid lg:grid-cols-3 sm:grid-cols-2 text-white">
                 {videos?.map((video) => (
                     <Link
                         to={`/watch/${video._id}`}

@@ -1,6 +1,15 @@
 import React from "react";
 import { formatDuration, timeAgo } from "../helpers/timeAgo";
 import { Link } from "react-router-dom";
+
+function truncateTitle(title, wordLimit) {
+    const words = title.split(" ");
+    if (words.length > wordLimit) {
+        return words.slice(0, wordLimit).join(" ") + "...";
+    }
+    return title;
+}
+
 function VideoList({
     thumbnail,
     duration,
@@ -26,15 +35,17 @@ function VideoList({
                 <div className="flex items-center py-1 px-2 gap-2">
                     {avatar && (
                         <Link to={`/${channelId}`}>
-                        <img
-                            src={avatar}
-                            className="w-10 h-10 rounded-full object-cover"
-                            alt=""
-                        />
-                    </Link>
+                            <img
+                                src={avatar}
+                                className="w-10 h-10 rounded-full object-cover"
+                                alt=""
+                            />
+                        </Link>
                     )}
                     <div>
-                        <h2 className="font-medium">{title}</h2>
+                        <h2 className="font-medium">
+                            {truncateTitle(title, 8)}
+                        </h2>
                         <div className="text-xs space-x-1 text-slate-400">
                             <span>{views} Views</span> .
                             <span>{timeAgo(createdAt)}</span>
