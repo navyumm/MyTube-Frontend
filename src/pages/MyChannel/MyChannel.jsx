@@ -20,8 +20,8 @@ function MyChannel() {
         <>
             <ChannelHeader
                 username={channel?.username}
-                coverImage={profile?.coverImage.url}
-                avatar={profile?.avatar.url}
+                coverImage={profile?.coverImage}
+                avatar={profile?.avatar}
                 subscribedCount={profile?.channelsSubscribedToCount || 0}
                 fullName={profile?.fullName}
                 subscribersCount={profile?.subscribersCount || 0}

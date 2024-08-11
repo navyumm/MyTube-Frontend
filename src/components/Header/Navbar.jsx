@@ -16,7 +16,7 @@ import { NavLink } from "react-router-dom";
 function Navbar() {
     const [toggleMenu, setToggleMenu] = useState(false);
     const authStatus = useSelector((state) => state.auth.status);
-    const profileImg = useSelector((state) => state.auth.userData?.avatar.url);
+    const profileImg = useSelector((state) => state.auth.userData?.avatar);
 
     const sidePanelItems = [
         {
@@ -61,7 +61,7 @@ function Navbar() {
                     />
                 </div>
 
-                {/* login and signup butons for larger screens */}
+                {/* login and signup buttons for larger screens */}
                 {authStatus ? (
                     <div className="w-10 space-x-2 sm:block hidden">
                         <img
