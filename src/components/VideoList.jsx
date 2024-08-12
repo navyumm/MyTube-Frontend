@@ -2,10 +2,9 @@ import React from "react";
 import { formatDuration, timeAgo } from "../helpers/timeAgo";
 import { Link } from "react-router-dom";
 
-function truncateTitle(title, wordLimit) {
-    const words = title.split(" ");
-    if (words.length > wordLimit) {
-        return words.slice(0, wordLimit).join(" ") + "...";
+function truncateTitle(title, charLimit) {
+    if (title.length > charLimit) {
+        return title.slice(0, charLimit) + "...";
     }
     return title;
 }
@@ -44,7 +43,7 @@ function VideoList({
                     )}
                     <div>
                         <h2 className="font-medium">
-                            {truncateTitle(title, 8)}
+                            {truncateTitle(title, 40)}
                         </h2>
                         <div className="text-xs space-x-1 text-slate-400">
                             <span>{views} Views</span> .
