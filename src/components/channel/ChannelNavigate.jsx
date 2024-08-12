@@ -1,14 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function ChannelNavigate() {
+function ChannelNavigate({username}) {
   return (
     <>
       {/* channel options */}
-      <section className="w-full flex justify-evenly items-center border-b-2 border-slate-500 text-sm sm:text-base sm:mt-4 md:mt-0 mt-2">
+      <section className="text-white w-full flex justify-evenly items-center border-b-2 border-slate-500 text-sm sm:text-base sm:mt-4 md:mt-0 mt-2">
 
         <NavLink
-          to={"/my-content/videos"}
+          to={`/channel/${username}/videos`}
           className={({ isActive }) =>
             isActive
               ? "bg-white text-[#e55542] border-b-2 border-[#e55542]"
@@ -19,7 +19,7 @@ function ChannelNavigate() {
         </NavLink>
 
         <NavLink
-          to={"/my-content/playlists"}
+          to={`/channel/${username}/playlists`}
           className={({ isActive }) =>
             isActive
               ? "bg-white text-[#e55542] border-b-2 border-[#e55542]"
@@ -30,7 +30,7 @@ function ChannelNavigate() {
         </NavLink>
 
         <NavLink
-          to={"/my-content/tweets"}
+          to={`/channel/${username}/tweets`}
           className={({ isActive }) =>
             isActive
               ? "bg-white text-[#e55542] border-b-2 border-[#e55542]"
@@ -41,7 +41,7 @@ function ChannelNavigate() {
         </NavLink>
 
         <NavLink
-          to={"/my-content/subscribed"}
+          to={`/channel/${username}/subscribed`}
           className={({ isActive }) =>
             isActive
               ? "bg-white text-[#e55542] border-b-2 border-[#e55542]"

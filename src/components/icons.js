@@ -9,6 +9,7 @@ import { BiHistory } from "react-icons/bi";
 import { TbUserCheck } from "react-icons/tb";
 import { IoFolderOutline } from "react-icons/io5";
 import { RiHome6Line } from "react-icons/ri";
+import { TiUser } from "react-icons/ti";
 
 export {
     IoCloseCircleOutline,
@@ -21,5 +22,6 @@ export {
     BiHistory,
     IoFolderOutline,
     RiHome6Line,
-    TbUserCheck
+    TbUserCheck,
+    TiUser
 }

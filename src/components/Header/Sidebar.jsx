@@ -10,8 +10,10 @@ import {
     TbUserCheck,
 } from "../icons";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Sidebar() {
+    const username = useSelector((state) => state.auth?.userData?.username);
     const sidebarTopItems = [
         {
             icon: <RiHome6Line size={25} />,
@@ -31,7 +33,7 @@ function Sidebar() {
         {
             icon: <HiOutlineVideoCamera size={25} />,
             title: "My Content",
-            url: "/my-content",
+            url: `/channel/${username}`,
         },
         {
             icon: <IoFolderOutline size={25} />,
@@ -71,7 +73,7 @@ function Sidebar() {
     return (
         <>
             <div className="sm:block hidden">
-                <div className="text-white lg:w-60 md:w-44 w-16 sm:p-3 p-2 border-slate-300 border-r h-[89vh] flex flex-col justify-between">
+                <div className="text-white lg:w-60 md:w-44 w-16 sm:p-3 p-2 border-slate-300 border-r h-[89.5vh] flex flex-col justify-between">
                     <div className="flex flex-col gap-4 mt-5">
                         {sidebarTopItems.map((item) => (
                             <NavLink
