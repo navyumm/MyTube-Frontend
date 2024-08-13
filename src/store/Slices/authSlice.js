@@ -109,7 +109,7 @@ const authSlice = createSlice({
         builder.addCase(userLogin.fulfilled, (state, action) => {
             state.loading = false;
             state.status = true;
-            state.userData = action.payload.data.user;
+            state.userData = action.payload;
         });
         builder.addCase(userLogout.pending, (state) => {
             state.loading = true;
