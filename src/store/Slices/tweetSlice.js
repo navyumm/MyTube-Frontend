@@ -10,7 +10,6 @@ const initialState = {
 export const createTweet = createAsyncThunk("createTweet", async (content) => {
     try {
         const response = await axiosInstance.post("/tweet", content);
-        console.log(response.data.data);
         return response.data.data;
     } catch (error) {
         toast.error(error?.response?.data?.error);
@@ -18,27 +17,20 @@ export const createTweet = createAsyncThunk("createTweet", async (content) => {
     }
 });
 
-export const editTweet = createAsyncThunk(
-    "editTweet",
-    async ({ tweetId, content }) => {
-        try {
-            const response = await axiosInstance.patch(
-                `/tweet/${tweetId}`,
-                content
-            );
-            console.log(response.data.data);
-            return response.data.data;
-        } catch (error) {
-            toast.error(error?.response?.data?.error);
-            throw error;
-        }
+export const editTweet = createAsyncThunk("editTweet", async ({ tweetId, content }) => {
+    try {
+        const response = await axiosInstance.patch(`/tweet/${tweetId}`, content);
+        return response.data.data;
+    } catch (error) {
+        toast.error(error?.response?.data?.error);
+        throw error;
     }
+}
 );
 
 export const deleteTweet = createAsyncThunk("deleteTweet", async (tweetId) => {
     try {
         const response = await axiosInstance.delete(`/tweet/${tweetId}`);
-        console.log(response.data.data);
         return response.data.data;
     } catch (error) {
         toast.error(error?.response?.data?.error);
@@ -46,18 +38,15 @@ export const deleteTweet = createAsyncThunk("deleteTweet", async (tweetId) => {
     }
 });
 
-export const getUserTweets = createAsyncThunk(
-    "getUserTweets",
-    async (userId) => {
-        try {
-            const response = await axiosInstance.get(`/tweet/user/${userId}`);
-            console.log(response.data.data);
-            return response.data.data;
-        } catch (error) {
-            toast.error(error?.response?.data?.error);
-            throw error;
-        }
+export const getUserTweets = createAsyncThunk("getUserTweets", async (userId) => {
+    try {
+        const response = await axiosInstance.get(`/tweet/user/${userId}`);
+        return response.data.data;
+    } catch (error) {
+        toast.error(error?.response?.data?.error);
+        throw error;
     }
+}
 );
 
 const tweetSlice = createSlice({
@@ -65,10 +54,9 @@ const tweetSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(
-            getUserTweets.pending,
-            (state) => (state.loading = true)
-        );
+        builder.addCase(getUserTweets.pending, (state) => {
+            state.loading = true
+        });
         builder.addCase(getUserTweets.fulfilled, (state, action) => {
             state.loading = false;
             state.tweets = action.payload;

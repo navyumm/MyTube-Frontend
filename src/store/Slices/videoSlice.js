@@ -25,8 +25,6 @@ export const getAllVideos = createAsyncThunk(
       }
 
       const response = await axiosInstance.get(url);
-
-      // console.log("Response data : ", response.data);
       return response.data.data;
     } catch (error) {
       toast.error(error?.response?.data?.error);
@@ -44,7 +42,6 @@ export const publishAvideo = createAsyncThunk("publishAvideo", async (data) => {
 
   try {
     const response = await axiosInstance.post('/videos', formData);
-    console.log(response.data.data);
     toast.success(response?.data?.message);
     return response.data.data;
   } catch (error) {
@@ -61,7 +58,6 @@ export const updateAVideo = createAsyncThunk("updateAVideo", async (data) => {
 
   try {
     const response = await axiosInstance.patch(`/videos/v/${data.videoId}`, formData);
-    console.log(response.data.data);
     toast.success(response?.data?.message);
     return response.data.data;
   } catch (error) {
@@ -85,7 +81,6 @@ export const deleteAVideo = createAsyncThunk("deleteAVideo", async (videoId) => 
 export const getVideoById = createAsyncThunk("getVideoById", async (videoId) => {
   try {
     const response = await axiosInstance.get(`/videos/v/${videoId}`);
-    console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     toast.error(error?.response?.data?.error);

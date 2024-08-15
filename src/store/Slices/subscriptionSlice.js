@@ -9,14 +9,11 @@ const initialState = {
     mySubscriptions: [],
 };
 
-export const toggleSubscription = createAsyncThunk(
-    "toggleSubscription",
-    async (channelId) => {
+export const toggleSubscription = createAsyncThunk("toggleSubscription", async (channelId) => {
         try {
             const response = await axiosInstance.post(
                 `subscriptions/c/${channelId}`
             );
-            console.log(response.data.data.subscribed);
             return response.data.data.subscribed;
         } catch (error) {
             toast.error(error?.response?.data?.error);
@@ -25,14 +22,11 @@ export const toggleSubscription = createAsyncThunk(
     }
 );
 
-export const getUserChannelSubscribers = createAsyncThunk(
-    "getUserChannelSubscribers",
-    async (channelId) => {
+export const getUserChannelSubscribers = createAsyncThunk("getUserChannelSubscribers", async (channelId) => {
         try {
             const response = await axiosInstance.get(
                 `subscriptions/c/${channelId}`
             );
-            console.log(response.data.data);
             return response.data.data;
         } catch (error) {
             toast.error(error?.response?.data?.error);
@@ -41,14 +35,11 @@ export const getUserChannelSubscribers = createAsyncThunk(
     }
 );
 
-export const getSubscribedChannels = createAsyncThunk(
-    "getSubscribedChannels",
-    async (subscriberId) => {
+export const getSubscribedChannels = createAsyncThunk("getSubscribedChannels", async (subscriberId) => {
         try {
             const response = await axiosInstance.get(
                 `subscriptions/u/${subscriberId}`
             );
-            console.log(response.data.data);
             return response.data.data;
         } catch (error) {
             toast.error(error?.response?.data?.error);
