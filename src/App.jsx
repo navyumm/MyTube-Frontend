@@ -11,6 +11,7 @@ import ChannelVideos from "./pages/Channel/ChannelVideos";
 import History from "./pages/History";
 import ChannelTweets from "./pages/Channel/ChannelTweets";
 import LikedVideos from "./pages/LikedVideos";
+import VideoDetail from "./pages/VideoDetail";
 
 function App() {
     const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function App() {
                 </Route>
                 <Route path="/login" element={<Login />}/>
                 <Route path="/signup" element={<SignUp />}/>
+                <Route path="/watch/:videoId" element={<VideoDetail />}/>
             </Routes>
             
             <Toaster

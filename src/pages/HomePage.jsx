@@ -8,7 +8,7 @@ import HomeSkeleton from "../skeleton/HomeSkeleton";
 
 function HomePage() {
     const dispatch = useDispatch();
-    const videos = useSelector((state) => state.video?.videos);
+    const videos = useSelector((state) => state.video?.video);
     const loading = useSelector((state) => state.video?.loading);
 
     useEffect(() => {

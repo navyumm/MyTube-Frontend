@@ -21,9 +21,9 @@ function Channel() {
                 username={username}
                 coverImage={channel?.coverImage}
                 avatar={channel?.avatar}
-                subscribedCount={channel?.channelsSubscribedToCount || 0}
+                subscribedCount={channel?.channelsSubscribedToCount}
                 fullName={channel?.fullName}
-                subscribersCount={channel?.subscribersCount || 0}
+                subscribersCount={channel?.subscribersCount}
             />
             <ChannelNavigate username={username}/>
             <div className="overflow-y-scroll h-[32rem] sm:h-96 mb-20 sm:mb-0">

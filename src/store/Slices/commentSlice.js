@@ -8,7 +8,7 @@ const initialState = {
     comments: [],
 };
 
-export const createAComment = createAsyncThunk("createAComment", async ({videoId, content}) => {
+export const createAComment = createAsyncThunk("createAComment", async ({ videoId, content }) => {
     try {
         const response = await axiosInstance.post(`/comment/${videoId}`, content);
         return response.data.data;
@@ -47,10 +47,10 @@ export const deleteAComment = createAsyncThunk("deleteAComment", async (commentI
 
 export const getVideoComments = createAsyncThunk(
     "getVideoComments",
-    async ({videoId, page, limit}) => {
+    async ({ videoId, page, limit }) => {
         const url = new URL(`${BASE_URL}/${videoId}`);
-        if(page) url.searchParams.set('page', page);
-        if(limit) url.searchParams.set('limit', limit);
+        if (page) url.searchParams.set('page', page);
+        if (limit) url.searchParams.set('limit', limit);
 
         try {
             const response = await axiosInstance.get(url);
@@ -67,13 +67,15 @@ const commentSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(
-            getVideoComments.pending,
-            (state) => (state.loading = true)
-        );
+        builder.addCase(getVideoComments.pending, (state) => {
+            state.loading = true
+        });
         builder.addCase(getVideoComments.fulfilled, (state, action) => {
             state.loading = false;
             state.comments = action.payload;
+        });
+        builder.addCase(createAComment.fulfilled, (state, action) => {
+            state.comments.unshift(action.payload);
         });
     },
 });

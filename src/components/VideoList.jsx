@@ -20,8 +20,8 @@ function VideoList({
 }) {
     return (
         <>
-            <div className="w-full sm:p-2">
-                <div className="relative  sm:h-60 h-48">
+            <div className="w-full p-2">
+                <div className="relative">
                     <img
                         src={thumbnail}
                         className="object-cover"
@@ -42,7 +42,7 @@ function VideoList({
                     )}
                     <div>
                         <h2 className="font-medium">
-                            {truncateTitle(title, 40)}
+                            {truncateTitle(title, 38)}
                         </h2>
                         <div className="text-xs space-x-1 text-slate-400">
                             <span>{views} Views</span> .

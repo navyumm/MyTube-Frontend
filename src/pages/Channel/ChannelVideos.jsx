@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function ChannelVideos() {
     const dispatch = useDispatch();
     const userId = useSelector((state) => state.user?.profileData?._id);
-    const videos = useSelector((state) => state.video?.videos);
+    const videos = useSelector((state) => state.video?.video);
 
     useEffect(() => {
         dispatch(getAllVideos(userId));
@@ -21,7 +21,7 @@ function ChannelVideos() {
                         key={video._id}
                     >
                         <VideoList
-                            avatar={video.avatar?.url}
+                            // avatar={video.avatar?.url}
                             duration={video.duration}
                             title={video.title}
                             thumbnail={video.thumbnail?.url}

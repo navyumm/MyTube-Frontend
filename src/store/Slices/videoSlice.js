@@ -25,6 +25,7 @@ export const getAllVideos = createAsyncThunk(
       }
 
       const response = await axiosInstance.get(url);
+      console.log("All videos : ", response.data.data)
       return response.data.data;
     } catch (error) {
       toast.error(error?.response?.data?.error);
@@ -78,9 +79,9 @@ export const deleteAVideo = createAsyncThunk("deleteAVideo", async (videoId) => 
   }
 });
 
-export const getVideoById = createAsyncThunk("getVideoById", async (videoId) => {
+export const getVideoById = createAsyncThunk("getVideoById", async ({videoId, userId}) => {
   try {
-    const response = await axiosInstance.get(`/videos/v/${videoId}`);
+    const response = await axiosInstance.get(`/videos/v/${videoId}`, userId);
     return response.data.data;
   } catch (error) {
     toast.error(error?.response?.data?.error);
@@ -110,7 +111,7 @@ const videoSlice = createSlice({
     });
     builder.addCase(getAllVideos.fulfilled, (state, action) => {
       state.loading = false;
-      state.videos = action.payload;
+      state.video = action.payload;
     });
     builder.addCase(publishAvideo.pending, (state) => {
       state.loading = true;
@@ -135,7 +136,7 @@ const videoSlice = createSlice({
     });
     builder.addCase(getVideoById.fulfilled, (state, action) => {
       state.loading = false;
-      state.videos = action.payload;
+      state.video = action.payload;
     });
     builder.addCase(togglePublishStatus.fulfilled, (state, action) => {
       state.isPublished = action.payload;
