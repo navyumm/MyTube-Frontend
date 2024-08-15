@@ -20,8 +20,8 @@ function VideoList({
 }) {
     return (
         <>
-            <div className="w-full p-2">
-                <div className="relative">
+            <div className="w-full sm:p-2">
+                <div className="relative  sm:h-60 h-48">
                     <img
                         src={thumbnail}
                         className="object-cover"
