@@ -5,8 +5,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'http://localhost:8080/api/v1'
-      // '/api': 'https://youtube-backend-ubqw.onrender.com/api/v1'
+      // '/api': 'http://localhost:8080/api/v1'
+      '/api': 'https://youtube-backend-ubqw.onrender.com/api/v1'
     }
   }
 })
