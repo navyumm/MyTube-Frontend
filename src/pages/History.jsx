@@ -23,7 +23,7 @@ function History() {
         return (
             <>
                 <Container>
-                    <div className="grid lg:grid-cols-3 sm:grid-cols-2 text-white">
+                    <div className="grid lg:grid-cols-3 h-[86vh] mb-16 sm:grid-cols-2 text-white overflow-y-scroll">
                         {videos.map((video) => (
                             <Link
                                 to={`/watch/${video._id}`}

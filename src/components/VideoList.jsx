@@ -42,7 +42,7 @@ function VideoList({
                     )}
                     <div>
                         <h2 className="font-medium">
-                            {truncateTitle(title, 38)}
+                            {truncateTitle(title, 30)}
                         </h2>
                         <div className="text-xs space-x-1 text-slate-400">
                             <span>{views} Views</span> .
