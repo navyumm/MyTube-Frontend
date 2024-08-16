@@ -6,6 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': 'http://localhost:8080/api/v1'
+      // '/api': 'https://youtube-backend-ubqw.onrender.com/api/v1'
     }
   }
 })

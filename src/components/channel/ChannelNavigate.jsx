@@ -15,7 +15,7 @@ function ChannelNavigate({username}) {
               : ""
           }
         >
-          <p className="p-2">Videos</p>
+          <p className="p-2 hover:bg-white hover:border-[#e55542] hover:text-[#e55542]">Videos</p>
         </NavLink>
 
         <NavLink
@@ -26,7 +26,7 @@ function ChannelNavigate({username}) {
               : ""
           }
         >
-          <p className="p-2">Playlists</p>
+          <p className="p-2 hover:bg-white hover:border-[#e55542] hover:text-[#e55542]">Playlists</p>
         </NavLink>
 
         <NavLink
@@ -37,7 +37,7 @@ function ChannelNavigate({username}) {
               : ""
           }
         >
-          <p className="p-2">Tweets</p>
+          <p className="p-2 hover:bg-white hover:border-[#e55542] hover:text-[#e55542]">Tweets</p>
         </NavLink>
 
         <NavLink
@@ -48,7 +48,7 @@ function ChannelNavigate({username}) {
               : ""
           }
         >
-          <p className="p-2">Subscribed</p>
+          <p className="p-2 hover:bg-white hover:border-[#e55542] hover:text-[#e55542]">Subscribed</p>
         </NavLink>
       </section>
     </>

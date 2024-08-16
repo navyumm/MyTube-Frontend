@@ -25,7 +25,6 @@ export const getAllVideos = createAsyncThunk(
       }
 
       const response = await axiosInstance.get(url);
-      console.log("All videos : ", response.data.data)
       return response.data.data;
     } catch (error) {
       toast.error(error?.response?.data?.error);
