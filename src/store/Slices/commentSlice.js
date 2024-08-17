@@ -13,6 +13,7 @@ const initialState = {
 export const createAComment = createAsyncThunk("createAComment", async ({ videoId, content }) => {
     try {
         const response = await axiosInstance.post(`/comment/${videoId}`, {content});
+        toast.success(response.data?.message)
         return response.data.data ;
     } catch (error) {
         toast.error(error?.response?.data?.error);
@@ -39,6 +40,7 @@ export const editAComment = createAsyncThunk(
 export const deleteAComment = createAsyncThunk("deleteAComment", async (commentId) => {
     try {
         const response = await axiosInstance.delete(`/comment/c/${commentId}`);
+        toast.success(response.data.message);
         console.log(response.data.data);
         return response.data.data;
     } catch (error) {
@@ -82,6 +84,10 @@ const commentSlice = createSlice({
         builder.addCase(createAComment.fulfilled, (state, action) => {
             state.comments.unshift(action.payload);
             state.totalComments ++;
+        });
+        builder.addCase(deleteAComment.fulfilled, (state, action) => {
+            state.comments = state.comments.filter((comment) => comment._id !== action.payload.commentId);
+            state.totalComments --;
         });
     },
 });
