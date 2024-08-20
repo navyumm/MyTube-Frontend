@@ -11,21 +11,25 @@ function Channel() {
 
     const channel = useSelector((state) => state.user?.profileData);
 
+    console.log(channel?.subcribersCount);
     useEffect(() => {
         dispatch(userChannelProfile(username));
     }, [dispatch, username]);
 
     return (
         <>
-            <ChannelHeader
-                username={username}
-                coverImage={channel?.coverImage}
-                avatar={channel?.avatar}
-                subscribedCount={channel?.channelsSubscribedToCount}
-                fullName={channel?.fullName}
-                subscribersCount={channel?.subscribersCount}
-            />
-            <ChannelNavigate username={username}/>
+            {
+                channel &&
+                <ChannelHeader
+                    username={username}
+                    coverImage={channel?.coverImage}
+                    avatar={channel?.avatar}
+                    subscribedCount={channel?.channelsSubscribedToCount}
+                    fullName={channel?.fullName}
+                    subscribersCount={channel?.subscribersCount}
+                />
+            }
+            <ChannelNavigate username={username} />
             <div className="overflow-y-scroll h-[30rem] sm:h-[36vh] md:h-[44vh] md:mb-2 mt-2 mb-0 sm:mb-20">
                 <Outlet />
             </div>

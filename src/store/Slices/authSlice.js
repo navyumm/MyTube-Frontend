@@ -87,7 +87,6 @@ export const changePassword = createAsyncThunk(
 export const getCurrentUser = createAsyncThunk("getCurrentUser", async () => {
     try {
         const response = await axiosInstance.get("/users/current-user");
-        console.log("Current User:", response);
         return response.data;
     } catch (error) {
         toast.error(error?.response?.data?.error || "Invalid access token");
