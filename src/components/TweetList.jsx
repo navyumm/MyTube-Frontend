@@ -53,7 +53,7 @@ function TweetList({
         <div className="w-10">
           <img
             src={avatar || avatar2}
-            className="w-8 h-8 object-cover rounded-full"
+            className="w-10 h-10 object-cover rounded-full"
           />
         </div>
         <div className="w-full flex flex-col gap-1 relative">
