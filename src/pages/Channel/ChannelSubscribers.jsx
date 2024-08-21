@@ -10,7 +10,6 @@ function ChannelSubscribers() {
     const channelId = useSelector((state) => state.user.profileData?._id);
     const subscribers = useSelector((state) => state.subscription.channelSubscribers);
 
-    // console.log("subscriber", subscribers);
     useEffect(() => {
         if (channelId) {
             dispatch(getUserChannelSubscribers(channelId));

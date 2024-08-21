@@ -11,7 +11,6 @@ function Channel() {
 
     const channel = useSelector((state) => state.user?.profileData);
 
-    // console.log(channel?.subcribersCount);
     useEffect(() => {
         dispatch(userChannelProfile(username));
     }, [dispatch, username]);
