@@ -33,11 +33,11 @@ function LikedVideos() {
             >
               <VideoList
                 avatar={
-                  video.likedVideo.ownerDetails?.avatar?.url
+                  video.likedVideo.ownerDetails?.avatar
                 }
                 duration={video.likedVideo.duration}
                 title={video.likedVideo.title}
-                thumbnail={video.likedVideo.thumbnail?.url}
+                thumbnail={video.likedVideo.thumbnail}
                 createdAt={video.likedVideo.createdAt}
                 views={video.likedVideo.views}
               />

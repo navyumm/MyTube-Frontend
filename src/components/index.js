@@ -20,6 +20,7 @@ import Description from "./Description";
 import TweetList from "./TweetList";
 import Avatar from "./Avatar";
 import NoVideosFound from "./NoVideosFound";
+import TogglePublish from "./TogglePublish";
 
 export { 
   Button, 
@@ -44,4 +45,5 @@ export {
   ChannelNavigate, 
   Avatar,
   NoVideosFound,
+  TogglePublish,
 };
