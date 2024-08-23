@@ -21,6 +21,8 @@ import TweetList from "./TweetList";
 import Avatar from "./Avatar";
 import NoVideosFound from "./NoVideosFound";
 import TogglePublish from "./TogglePublish";
+import Input2 from "./Input2";
+import Spinner from "./Spinner"
 
 export { 
   Button, 
@@ -46,4 +48,6 @@ export {
   Avatar,
   NoVideosFound,
   TogglePublish,
+  Input2,
+  Spinner,
 };

@@ -18,7 +18,7 @@ function LikedVideos() {
     return <HomeSkeleton />;
   }
 
-  if (videos?.length == 0) {
+  if (likedVideos?.length == 0) {
     return <NoVideosFound />
   }
 
@@ -32,12 +32,10 @@ function LikedVideos() {
               key={video.likedVideo._id}
             >
               <VideoList
-                avatar={
-                  video.likedVideo.ownerDetails?.avatar
-                }
+                avatar={video.likedVideo.ownerDetails?.avatar}
                 duration={video.likedVideo.duration}
                 title={video.likedVideo.title}
-                thumbnail={video.likedVideo.thumbnail}
+                thumbnail={video.likedVideo.thumbnail?.url}
                 createdAt={video.likedVideo.createdAt}
                 views={video.likedVideo.views}
               />

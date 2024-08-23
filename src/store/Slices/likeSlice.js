@@ -58,7 +58,9 @@ const likeSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getLikedVideos.pending, (state) => state.loading = true);
+        builder.addCase(getLikedVideos.pending, (state) => {
+            state.loading = true
+        });
         builder.addCase(getLikedVideos.fulfilled, (state, action) => {
             state.loading = false;
             state.likedVideos = action.payload;
