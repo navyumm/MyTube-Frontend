@@ -18,7 +18,7 @@ function AdminDashboard() {
   useEffect(() => {
     dispatch(getChannelStats());
     dispatch(getChannelVideos());
-  }, [dispatch]);
+  }, [dispatch, videos]);
   return (
     <>
       <Navbar />

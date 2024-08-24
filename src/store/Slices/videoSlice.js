@@ -5,7 +5,8 @@ import { BASE_URL } from "../../constants";
 
 const initialState = {
   loading: false,
-  uploading: true,
+  uploading: false,
+  uploaded: false,
   isPublished: null,
   video: null
 };
@@ -79,7 +80,7 @@ export const deleteAVideo = createAsyncThunk("deleteAVideo", async (videoId) => 
   }
 });
 
-export const getVideoById = createAsyncThunk("getVideoById", async ({videoId, userId}) => {
+export const getVideoById = createAsyncThunk("getVideoById", async ({ videoId, userId }) => {
   try {
     const response = await axiosInstance.get(`/videos/v/${videoId}`, userId);
     return response.data.data;
@@ -91,8 +92,8 @@ export const getVideoById = createAsyncThunk("getVideoById", async ({videoId, us
 
 export const togglePublishStatus = createAsyncThunk("togglePublishStatus", async (videoId) => {
   try {
-    const response = await axiosInstance.get(`/videos/toggle/publish/${videoId}`);
-    console.log("Publish ", response.data);
+    const response = await axiosInstance.patch(`/videos/toggle/publish/${videoId}`);
+    // console.log("Publish ", response.data);
     toast.success(response.data.data.message);
     return response.data.data.isPublished;
   } catch (error) {
@@ -104,7 +105,12 @@ export const togglePublishStatus = createAsyncThunk("togglePublishStatus", async
 const videoSlice = createSlice({
   name: "video",
   initialState,
-  reducers: {},
+  reducers: {
+    updateUploadState: (state) => {
+      state.uploading = false;
+      state.uploaded = false;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getAllVideos.pending, (state) => {
       state.loading = true;
@@ -119,7 +125,7 @@ const videoSlice = createSlice({
     });
     builder.addCase(publishAvideo.fulfilled, (state) => {
       state.loading = false;
-      state.uploading = false;
+      state.uploading = true;
     });
     builder.addCase(updateAVideo.pending, (state) => {
       state.loading = true;
@@ -146,4 +152,5 @@ const videoSlice = createSlice({
   },
 });
 
+export const { updateUploadState } = videoSlice.actions;
 export default videoSlice.reducer;
