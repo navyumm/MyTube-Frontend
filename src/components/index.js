@@ -22,10 +22,7 @@ import Avatar from "./Avatar";
 import NoVideosFound from "./NoVideosFound";
 import TogglePublish from "./TogglePublish";
 import Input2 from "./Input2";
-import Spinner from "./Spinner";
-import UploadVideo from "./UploadVideo";
-import UploadingVideo from "./UploadingVideo";
-import TogglePublish from "./TogglePublish";
+import Spinner from "./Spinner"
 
 export { 
   Button, 
@@ -53,7 +50,4 @@ export {
   TogglePublish,
   Input2,
   Spinner,
-  UploadVideo,
-  UploadingVideo,
-  TogglePublish
 };

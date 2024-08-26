@@ -14,11 +14,6 @@ import { BiSolidLike } from "react-icons/bi";
 import { BiSolidDislike } from "react-icons/bi";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { TiTick } from "react-icons/ti";
-import { ImBin } from "react-icons/im";
-import { GrEdit } from "react-icons/gr";
-import { MdOutlineSlowMotionVideo } from "react-icons/md";
-import { RxAvatar } from "react-icons/rx";
-import { FaRegEye, FaRegHeart } from "react-icons/fa";
 
 export {
     IoCloseCircleOutline,
@@ -37,10 +32,4 @@ export {
     BiSolidDislike,
     HiOutlineDotsVertical,
     TiTick,
-    ImBin,
-    GrEdit,
-    MdOutlineSlowMotionVideo,
-    RxAvatar,
-    FaRegEye,
-    FaRegHeart
 }

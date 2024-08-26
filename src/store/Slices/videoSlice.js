@@ -7,7 +7,7 @@ const initialState = {
   loading: false,
   uploading: false,
   uploaded: false,
-  publishToggled: false,
+  isPublished: null,
   video: null
 };
 
@@ -52,14 +52,14 @@ export const publishAvideo = createAsyncThunk("publishAvideo", async (data) => {
   }
 });
 
-export const updateAVideo = createAsyncThunk("updateAVideo", async ({ videoId, data }) => {
+export const updateAVideo = createAsyncThunk("updateAVideo", async (data) => {
   const formData = new FormData();
   formData.append("title", data.title);
   formData.append("description", data.description);
   formData.append("thumbnail", data.thumbnail[0]);
 
   try {
-    const response = await axiosInstance.patch(`/videos/v/${videoId}`, formData);
+    const response = await axiosInstance.patch(`/videos/v/${data.videoId}`, formData);
     toast.success(response?.data?.message);
     return response.data.data;
   } catch (error) {
@@ -94,7 +94,7 @@ export const togglePublishStatus = createAsyncThunk("togglePublishStatus", async
   try {
     const response = await axiosInstance.patch(`/videos/toggle/publish/${videoId}`);
     // console.log("Publish ", response.data);
-    toast.success(response.data.message);
+    toast.success(response.data.data.message);
     return response.data.data.isPublished;
   } catch (error) {
     toast.error(error?.response?.data?.error);
@@ -129,12 +129,9 @@ const videoSlice = createSlice({
     });
     builder.addCase(updateAVideo.pending, (state) => {
       state.loading = true;
-      state.uploading = true;
     });
     builder.addCase(updateAVideo.fulfilled, (state) => {
       state.loading = false;
-      state.uploading = false;
-      state.uploaded = true;
     });
     builder.addCase(deleteAVideo.pending, (state) => {
       state.loading = true;
@@ -149,8 +146,8 @@ const videoSlice = createSlice({
       state.loading = false;
       state.video = action.payload;
     });
-    builder.addCase(togglePublishStatus.fulfilled, (state) => {
-      state.publishToggled = !state.publishToggled
+    builder.addCase(togglePublishStatus.fulfilled, (state, action) => {
+      state.isPublished = action.payload;
     });
   },
 });
