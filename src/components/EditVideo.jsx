@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import Button from "./Button";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-import { updateAVideo } from "../store/Slices/videoSlice";
+import { updateAVideo, updateUploadState } from "../store/Slices/videoSlice";
 import Spinner from "./Spinner";
 
 function EditVideo({ videoId, title, description, setEditVideoPopup }) {
@@ -16,11 +16,11 @@ function EditVideo({ videoId, title, description, setEditVideoPopup }) {
   } = useForm();
   const dispatch = useDispatch();
   const uploading = useSelector((state) => state.video.uploading);
-  const uploaded = useSelector((state) => state.video.uploaded);
 
   const handleClosePopUp = () => {
     setEditVideoPopup((prev) => ({
       ...prev,
+      uploadVideo: false,
       editVideo: false,
     }));
   };
@@ -29,6 +29,7 @@ function EditVideo({ videoId, title, description, setEditVideoPopup }) {
     await dispatch(updateAVideo({ videoId, data }));
     setEditVideoPopup((prev) => ({
       ...prev,
+      uploadVideo: false,
       editVideo: false,
     }));
   };
@@ -43,7 +44,7 @@ function EditVideo({ videoId, title, description, setEditVideoPopup }) {
       <>
         <div className="w-52 border border-slate-600 bg-black flex gap-2 p-3">
           <Spinner />
-          <span className="text-sm font-bold">Updating video...</span>
+          <span className="text-md font-bold">Updating video...</span>
         </div>
       </>
     );
@@ -112,7 +113,7 @@ function EditVideo({ videoId, title, description, setEditVideoPopup }) {
               Cancel
             </Button>
             <Button
-              className="flex-1 bg-purple-500 p-2 font-bold"
+              className="flex-1 bg-[#f66c5a] p-2 font-bold"
               textColor="text-black"
               type="submit"
             >
