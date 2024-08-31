@@ -15,10 +15,11 @@ function Channel() {
         dispatch(userChannelProfile(username));
     }, [dispatch, username]);
 
+    window.scrollTo(0, 0);
+
     return (
         <>
-            {
-                channel &&
+            {channel && (
                 <ChannelHeader
                     username={username}
                     coverImage={channel?.coverImage}
@@ -29,9 +30,9 @@ function Channel() {
                     isSubscribed={channel?.isSubscribed}
                     channelId={channel?._id}
                 />
-            }
+            )}
             <ChannelNavigate username={username} />
-            <div className="overflow-y-scroll h-[30rem] sm:h-[36vh] md:h-[44vh] md:mb-2 mt-2 mb-0 sm:mb-20">
+            <div className="overflow-y-scroll h-[30rem] sm:h-[36vh] md:h-[50vh] md:mb-2 mt-2">
                 <Outlet />
             </div>
         </>

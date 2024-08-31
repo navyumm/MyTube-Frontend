@@ -51,14 +51,9 @@ export const userLogout = createAsyncThunk("logout", async () => {
     }
 });
 
-export const refreshAccessToken = createAsyncThunk(
-    "refreshAccessToken",
-    async (data) => {
+export const refreshAccessToken = createAsyncThunk("refreshAccessToken", async (data) => {
         try {
-            const response = await axiosInstance.post(
-                "/users/refresh-token",
-                data
-            );
+            const response = await axiosInstance.post("/users/refresh-token", data);
             return response.data;
         } catch (error) {
             toast.error(error?.response?.data?.error);
@@ -67,15 +62,10 @@ export const refreshAccessToken = createAsyncThunk(
     }
 );
 
-export const changePassword = createAsyncThunk(
-    "changePassword",
-    async (data) => {
+export const changePassword = createAsyncThunk("changePassword", async (data) => {
         try {
-            const response = await axiosInstance.post(
-                "/users/change-password",
-                data
-            );
-            toast.success(response.data.data);
+            const response = await axiosInstance.post("/users/change-password", data);
+            toast.success(response.data?.message);
             return response.data;
         } catch (error) {
             toast.error(error?.response?.data?.error);
@@ -105,9 +95,7 @@ export const updateAvatar = createAsyncThunk("updateAvatar", async (avatar) => {
     }
 });
 
-export const updateCoverImg = createAsyncThunk(
-    "updateCoverImg",
-    async (coverImage) => {
+export const updateCoverImg = createAsyncThunk("updateCoverImg", async (coverImage) => {
         try {
             const response = await axiosInstance.patch(
                 "/users/update-coverImg",
@@ -122,6 +110,17 @@ export const updateCoverImg = createAsyncThunk(
     }
 );
 
+export const updateUserDetails = createAsyncThunk("updateUserDetails", async (data) => {
+        try {
+            const response = await axiosInstance.patch("/users/update-user", data);
+            toast.success("Updated details successfully!!!");
+            return response.data;
+        } catch (error) {
+            toast.error(error?.response?.data?.error);
+            throw error;
+        }
+    }
+);
 
 const authSlice = createSlice({
     name: "auth",
@@ -182,6 +181,13 @@ const authSlice = createSlice({
         });
         builder.addCase(updateCoverImg.rejected, (state) => {
             state.loading = false;
+        });
+        builder.addCase(updateUserDetails.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(updateUserDetails.fulfilled, (state, action) => {
+            state.loading = false;
+            state.userData = action.payload;
         });
     },
 });
