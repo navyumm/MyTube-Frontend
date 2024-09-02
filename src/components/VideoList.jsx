@@ -1,6 +1,6 @@
 import React from "react";
 import { formatDuration, timeAgo } from "../helpers/timeAgo";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function truncateTitle(title, charLimit) {
     if (title.length > charLimit) {
@@ -17,11 +17,22 @@ function VideoList({
     avatar,
     channelName,
     createdAt,
+    videoId,
 }) {
+    const navigate = useNavigate();
+
+    const handleAvatarClick = (e) => {
+        e.stopPropagation();
+        navigate(`channel/${channelName}`);
+    };
+
     return (
         <>
-            <div className="w-full p-2">
-                <div className="relative">
+            <div
+                className="w-full sm:p-2 cursor-pointer"
+                onClick={() => navigate(`/watch/${videoId}`)}
+            >
+                <div className="relative sm:h-60 h-48">
                     <img
                         src={thumbnail}
                         className="object-cover"
@@ -32,13 +43,12 @@ function VideoList({
                 </div>
                 <div className="flex items-center py-2 px-2 gap-2">
                     {avatar && (
-                        <Link to={`/channel/${channelName}`}>
+                        <div onClick={handleAvatarClick}>
                             <img
                                 src={avatar}
-                                className="w-10 h-10 rounded-full object-cover"
-                                alt=""
+                                className="w-10 h-10 rounded-full object-cover border border-slate-700"
                             />
-                        </Link>
+                        </div>
                     )}
                     <div>
                         <h2 className="font-medium">

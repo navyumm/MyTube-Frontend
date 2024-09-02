@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
 import { Container, NoVideosFound, VideoList } from "../components";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getWatchHistory } from "../store/Slices/userSlice";
-import HomeSkeleton from "../skeleton/HomeSkeleton"
+import HomeSkeleton from "../skeleton/HomeSkeleton";
 
 function History() {
     const loading = useSelector((state) => state.user?.loading);
     const videos = useSelector((state) => state.user?.history);
     const dispatch = useDispatch();
     // console.log(videos);
+
+    window.scrollTo(0, 0);
 
     useEffect(() => {
         dispatch(getWatchHistory());
@@ -29,20 +30,17 @@ function History() {
                 <Container>
                     <div className="grid lg:grid-cols-3 h-[86vh] mb-16 sm:mb-2 sm:grid-cols-2 text-white overflow-y-scroll">
                         {videos.map((video) => (
-                            <Link
-                                to={`/watch/${video._id}`}
+                            <VideoList
                                 key={video._id}
-                            >
-                                <VideoList
-                                    avatar={video.owner?.avatar}
-                                    duration={video.duration}
-                                    title={video.title}
-                                    thumbnail={video.thumbnail?.url}
-                                    createdAt={video.createdAt}
-                                    views={video.views}
-                                    channelName={video.owner.username}
-                                />
-                            </Link>
+                                avatar={video.owner?.avatar.url}
+                                duration={video.duration}
+                                title={video.title}
+                                thumbnail={video.thumbnail?.url}
+                                createdAt={video.createdAt}
+                                views={video.views}
+                                channelName={video.owner.username}
+                                videoId={video._id}
+                            />
                         ))}
                     </div>
                 </Container>
