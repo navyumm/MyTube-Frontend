@@ -15,18 +15,20 @@ const TermsAndConditions = () => {
           Terms and Conditions
         </h1>
         <div className="mb-4">
-          <ul className="list-disc list-inside text-sm">
+          <ul className="list-disc list-inside">
             <li className="mb-2">
-              This is a project to showcase my skills in web
-              development.
+              This project is to showcase my skills in web development.
             </li>
             <li className="mb-2">
               This web app is still in development.
             </li>
             <li className="mb-2">
-              Don't upload videos greater than 100 MB.
+              Do not upload videos greater than 100 MB.
             </li>
-            <li>Don't upload images greater than 10 MB.</li>
+            <li className="mb-2">
+              Upload no explicit content meant to be emotionally
+              gratifying.
+            </li>
           </ul>
         </div>
 
@@ -38,7 +40,10 @@ const TermsAndConditions = () => {
             onChange={() => setIsChecked(!isChecked)}
             className="mr-2 transform scale-125"
           />
-          <label htmlFor="termsCheckbox">
+          <label
+            htmlFor="termsCheckbox"
+            className="font-bold"
+          >
             I agree to the terms and conditions
           </label>
         </div>
