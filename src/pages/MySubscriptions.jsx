@@ -21,9 +21,10 @@ function MySubscriptions() {
 
   return (
     <>
-      <div className="flex gap-2 p-2 text-white items-center bg-[#222222]">
+      <div className="flex pt-8 gap-2 h-16 p-4 text-white items-center bg-[#222222]">
         {subscriptions?.map((subscription) => (
           <Link
+            to={`/channel/${subscription?.subscribedChannel?.username}`}
             key={subscription?.subscribedChannel?._id}
             className="flex flex-col items-center overflow-x-scroll"
           // onClick={()=>(navigate(
@@ -51,7 +52,7 @@ function MySubscriptions() {
               <VideoList
                 key={subscription?.subscribedChannel?._id}
                 avatar={
-                  subscription?.subscribedChannel?.avatar.url
+                  subscription?.subscribedChannel?.avatar
                 }
                 duration={
                   subscription?.subscribedChannel?.latestVideo

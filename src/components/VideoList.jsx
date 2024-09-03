@@ -23,7 +23,7 @@ function VideoList({
 
     const handleAvatarClick = (e) => {
         e.stopPropagation();
-        navigate(`channel/${channelName}`);
+        navigate(`/channel/${channelName}`);
     };
 
     return (
@@ -32,7 +32,7 @@ function VideoList({
                 className="w-full sm:p-2 cursor-pointer"
                 onClick={() => navigate(`/watch/${videoId}`)}
             >
-                <div className="relative sm:h-60 h-48">
+                <div className="relative sm:h-66 h-50">
                     <img
                         src={thumbnail}
                         className="object-cover"

@@ -28,11 +28,11 @@ function History() {
         return (
             <>
                 <Container>
-                    <div className="grid lg:grid-cols-3 h-[86vh] mb-16 sm:mb-2 sm:grid-cols-2 text-white overflow-y-scroll">
+                    <div className="grid max-h-screen sm:m-0 lg:grid-cols-3 h-[86vh] mb-16 sm:mb-2 sm:grid-cols-2 text-white overflow-y-scroll">
                         {videos.map((video) => (
                             <VideoList
                                 key={video._id}
-                                avatar={video.owner?.avatar.url}
+                                avatar={video.owner?.avatar}
                                 duration={video.duration}
                                 title={video.title}
                                 thumbnail={video.thumbnail?.url}

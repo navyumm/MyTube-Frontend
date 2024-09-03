@@ -13,7 +13,7 @@ const initialState = {
 
 export const getAllVideos = createAsyncThunk(
   "getAllVideos",
-  async (userId, sortBy, sortType, query, page, limit) => {
+  async ({ userId, sortBy, sortType, query, page, limit }) => {
     try {
       const url = new URL(`${BASE_URL}/videos`);
 
@@ -52,12 +52,12 @@ export const publishAvideo = createAsyncThunk("publishAvideo", async (data) => {
   }
 });
 
-export const updateAVideo = createAsyncThunk("updateAVideo", async ({videoId, data}) => {
+export const updateAVideo = createAsyncThunk("updateAVideo", async ({ videoId, data }) => {
   const formData = new FormData();
   formData.append("title", data.title);
   formData.append("description", data.description);
   formData.append("thumbnail", data.thumbnail[0]);
-  
+
   try {
     const response = await axiosInstance.patch(`/videos/v/${videoId}`, formData);
     toast.success(response?.data?.message);
@@ -80,9 +80,9 @@ export const deleteAVideo = createAsyncThunk("deleteAVideo", async (videoId) => 
   }
 });
 
-export const getVideoById = createAsyncThunk("getVideoById", async ({videoId}) => {
+export const getVideoById = createAsyncThunk("getVideoById", async ({ videoId }) => {
   try {
-    const response = await axiosInstance.get(`/videos/v/${videoId}`);    
+    const response = await axiosInstance.get(`/videos/v/${videoId}`);
     return response.data.data;
   } catch (error) {
     toast.error(error?.response?.data?.error);
@@ -110,6 +110,9 @@ const videoSlice = createSlice({
       state.uploading = false;
       state.uploaded = false;
     },
+    makeVideosNull: (state) => {
+      state.video = null
+  }
   },
   extraReducers: (builder) => {
     builder.addCase(getAllVideos.pending, (state) => {
@@ -153,5 +156,5 @@ const videoSlice = createSlice({
   },
 });
 
-export const { updateUploadState } = videoSlice.actions;
+export const { updateUploadState, makeVideosNull } = videoSlice.actions;
 export default videoSlice.reducer;

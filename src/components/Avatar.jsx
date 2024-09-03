@@ -13,7 +13,7 @@ function Avatar({ src, channelName }) {
       <img
         src={src}
         alt="avatar"
-        className="w-8 h-8 rounded-full object-cover"
+        className="w-10 h-10 rounded-full object-cover"
         onClick={handleAvatarClick}
       />
     </>

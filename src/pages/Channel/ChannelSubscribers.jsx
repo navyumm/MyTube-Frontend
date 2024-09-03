@@ -19,8 +19,8 @@ function ChannelSubscribers() {
         <>
             {subscribers?.map((subscriber) => (
                 <Link
-                    to={`/profile/${subscriber._id}`}
-                    key={subscriber?.subscriber?._id}
+                    to={`/channel/${subscriber?.subscriber?.username}`}
+                    key={subscribers?.subscriber?._id}
                     className="flex border-b border-slate-500 mx-1 px-3 py-1 justify-between items-center text-white"
                 >
                     <div className="flex gap-3 items-center">
