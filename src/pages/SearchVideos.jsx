@@ -155,13 +155,13 @@ function SearchVideos() {
               <h1 className="font-semibold text-lg mb-4 text-center">Search Filters</h1>
               <IoCloseCircleOutline
                 size={25}
-                className="absolute right-4 top-4 sm:right-5 sm:top-5 cursor-pointer hover:text-purple-500 transition duration-200"
+                className="absolute right-4 top-4 sm:right-5 sm:top-5 cursor-pointer hover:text-red-500 transition duration-200"
                 onClick={() => setFilterOpen(false)}
               />
               <table className="w-full">
                 <thead>
                   <tr className="w-full text-start border-b border-slate-700">
-                    <th className="py-2 text-sm font-medium text-purple-400">Sort By</th>
+                    <th className="py-2 text-m font-medium text-red-500">Sort By</th>
                   </tr>
                 </thead>
                 <tbody className="flex flex-col gap-2 text-slate-400 cursor-pointer">
@@ -237,7 +237,7 @@ function SearchVideos() {
           </div>
         )}
 
-        <div className="grid h-[70vh] sm:h-[85vh] xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 text-white overflow-y-scroll gap-4 p-2 sm:p-4">
+        <div className="grid xl:h-[84vh] sm:h-[83vh] h-[75vh] xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 text-white overflow-y-scroll gap-4 p-2 sm:p-4">
           {videos &&
             videos.map((video) => (
               <VideoList
