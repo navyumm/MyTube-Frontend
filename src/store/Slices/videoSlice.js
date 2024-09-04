@@ -115,7 +115,7 @@ const videoSlice = createSlice({
       state.uploaded = false;
     },
     makeVideosNull: (state) => {
-      state.video.docs = []
+      state.video = []
     }
   },
   extraReducers: (builder) => {

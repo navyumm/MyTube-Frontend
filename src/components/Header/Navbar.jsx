@@ -12,6 +12,7 @@ import {
 } from "../icons.js";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import SearchForSmallScreen from "../SearchForSmallScreen.jsx";
 
 function Navbar() {
     const [toggleMenu, setToggleMenu] = useState(false);
@@ -60,6 +61,7 @@ function Navbar() {
                         size={30}
                         fontWeight={"bold"}
                     />
+                    <SearchForSmallScreen />
                 </div>
 
                 {/* login and signup buttons for larger screens */}
