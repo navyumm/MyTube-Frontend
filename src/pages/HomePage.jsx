@@ -9,14 +9,18 @@ function HomePage() {
     const videos = useSelector((state) => state.video?.video);
     const loading = useSelector((state) => state.video?.loading);
     const hasNextPage = useSelector(
-        (state) => state.video?.videos?.hasNextPage
+        (state) => state.video?.video?.hasNextPage
     );
     const [page, setPage] = useState(1);
 
     useEffect(() => {
         dispatch(getAllVideos({}));
+        // setPage(1);
 
-        return () => dispatch(makeVideosNull())
+        return () => {
+            dispatch(makeVideosNull());
+            // setPage(1); 
+        };
     }, [dispatch]);
 
     const fetchMoreVideos = useCallback(() => {

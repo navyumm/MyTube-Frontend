@@ -1,13 +1,16 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NoVideosFound, VideoList } from "../components";
 import HomeSkeleton from "../skeleton/HomeSkeleton";
 
 function SearchVideos() {
   const loading = useSelector((state) => state.video?.loading);
   const videos = useSelector((state) => state.video?.video);
+  const dispatch = useDispatch();
 
-  console.log("Videooos : ", videos)
+  useEffect(() => {
+    return () => dispatch(makeVideosNull());
+  }, [dispatch]);
 
   if (videos?.totalDocs === 0) {
     return <NoVideosFound text={"Try searching something else"} />;
@@ -19,7 +22,7 @@ function SearchVideos() {
 
   return (
     <>
-      <div className="grid grid-cols-3 text-white">
+      <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 text-white">
         {videos &&
           videos?.map((video) => (
             <VideoList
