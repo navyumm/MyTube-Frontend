@@ -7,6 +7,10 @@ const initialState = {
   loading: false,
   uploading: false,
   uploaded: false,
+  videos: {
+    docs: [],
+    hasNextPage: false,
+  },
   video: null,
   publishToggled: false
 };
@@ -111,8 +115,8 @@ const videoSlice = createSlice({
       state.uploaded = false;
     },
     makeVideosNull: (state) => {
-      state.video = null
-  }
+      state.video = []
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(getAllVideos.pending, (state) => {
@@ -120,7 +124,8 @@ const videoSlice = createSlice({
     });
     builder.addCase(getAllVideos.fulfilled, (state, action) => {
       state.loading = false;
-      state.video = action.payload;
+      state.video = [...state.videos.docs, ...action.payload];
+      state.videos.hasNextPage = action.payload.hasNextPage;
     });
     builder.addCase(publishAvideo.pending, (state) => {
       state.loading = true;
