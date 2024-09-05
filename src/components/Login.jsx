@@ -69,14 +69,14 @@ function Login() {
                         />
                         {errors.password && (
                             <span className="text-red-500">
-                            {errors.password.message}
-                        </span>
+                                {errors.password.message}
+                            </span>
                         )}
 
                         <Button
                             type="submit"
                             bgColor="bg-[#e55542]"
-                            className="w-full rounded sm:py-3 py-2 hover:bg-[#d6685a] text-lg"
+                            className="w-full text-lg sm:py-3 py-2 hover:bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 hover:text-white transition duration-200"
                         >
                             Login
                         </Button>

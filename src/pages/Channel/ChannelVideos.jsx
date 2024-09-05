@@ -6,7 +6,7 @@ import { getAllVideos, makeVideosNull } from "../../store/Slices/videoSlice";
 function ChannelVideos() {
     const dispatch = useDispatch();
     const userId = useSelector((state) => state.user?.profileData?._id);
-    const videos = useSelector((state) => state.video?.video);
+    const videos = useSelector((state) => state.video?.videos?.docs);
     const [searchParams, setSearchParams] = useState();
     const [activeButton, setActiveButton] = useState("button1");
 

@@ -75,7 +75,6 @@ export const updateAVideo = createAsyncThunk("updateAVideo", async ({ videoId, d
 export const deleteAVideo = createAsyncThunk("deleteAVideo", async (videoId) => {
   try {
     const response = await axiosInstance.delete(`/videos/v/${videoId}`);
-    console.log(response.data.data);
     toast.success(response?.data?.message);
     return response.data.data;
   } catch (error) {
@@ -115,7 +114,7 @@ const videoSlice = createSlice({
       state.uploaded = false;
     },
     makeVideosNull: (state) => {
-      state.video = []
+      state.videos.docs = []
     }
   },
   extraReducers: (builder) => {
@@ -124,7 +123,7 @@ const videoSlice = createSlice({
     });
     builder.addCase(getAllVideos.fulfilled, (state, action) => {
       state.loading = false;
-      state.video = [...state.videos.docs, ...action.payload];
+      state.videos.docs = [...state.videos.docs, ...action.payload.docs];
       state.videos.hasNextPage = action.payload.hasNextPage;
     });
     builder.addCase(publishAvideo.pending, (state) => {

@@ -6,20 +6,20 @@ import HomeSkeleton from "../skeleton/HomeSkeleton";
 
 function HomePage() {
     const dispatch = useDispatch();
-    const videos = useSelector((state) => state.video?.video);
+    const videos = useSelector((state) => state.video?.videos?.docs);
     const loading = useSelector((state) => state.video?.loading);
     const hasNextPage = useSelector(
-        (state) => state.video?.video?.hasNextPage
+        (state) => state.video?.videos?.hasNextPage
     );
     const [page, setPage] = useState(1);
 
     useEffect(() => {
         dispatch(getAllVideos({}));
-        // setPage(1);
+        setPage(1);
 
         return () => {
             dispatch(makeVideosNull());
-            // setPage(1); 
+            setPage(1); 
         };
     }, [dispatch]);
 
@@ -30,13 +30,17 @@ function HomePage() {
         }
     }, [page, hasNextPage, dispatch]);
 
+    if (loading) {
+        return <HomeSkeleton />;
+    }
+
     return (
         <Container>
             <InfiniteScroll
                 fetchMore={fetchMoreVideos}
                 hasNextPage={hasNextPage}
             >
-                <div className="text-white max-h-screen mt-2 mb-16 sm:m-0 sm:mb-2 w-full h-[86vh] grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 overflow-y-scroll">
+                <div className="text-white max-h-[85vh] mt-2 mb-16 sm:m-0 sm:mb-2 w-full h-[86vh] grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 overflow-y-scroll">
                     {videos?.map((video) => (
                         <VideoList
                             key={video._id}
@@ -52,7 +56,6 @@ function HomePage() {
                     ))}
                 </div>
             </InfiniteScroll>
-            {loading && <HomeSkeleton />}
         </Container>
     );
 }

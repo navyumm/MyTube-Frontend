@@ -29,7 +29,7 @@ export const editAComment = createAsyncThunk(
                 `/comment/c/${commentId}`,
                 content
             );
-            console.log(response.data.data);
+            toast.success(response.data?.message)
         } catch (error) {
             toast.error(error?.response?.data?.error);
             throw error;
@@ -41,7 +41,6 @@ export const deleteAComment = createAsyncThunk("deleteAComment", async (commentI
     try {
         const response = await axiosInstance.delete(`/comment/c/${commentId}`);
         toast.success(response.data.message);
-        console.log(response.data.data);
         return response.data.data;
     } catch (error) {
         toast.error(error?.response?.data?.error);
@@ -58,7 +57,6 @@ export const getVideoComments = createAsyncThunk(
 
         try {
             const response = await axiosInstance.get(url);
-            console.log("comments : ", response.data.data)
             return response.data.data;
         } catch (error) {
             toast.error(error?.response?.data?.error);
