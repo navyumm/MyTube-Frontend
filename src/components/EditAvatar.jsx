@@ -3,13 +3,15 @@ import { MdClose, MdOutlineCloudUpload } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { updateAvatar, updateCoverImg } from "../store/Slices/authSlice";
+import { GetImagePreview } from "./index.js";
+import { IoCloseCircleOutline } from "react-icons/io5";
 
-function EditAvatar({ cover }) {
+function EditAvatar({ cover, preImage }) {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const {
     handleSubmit,
-    register,
+    control,
     formState: { errors },
   } = useForm();
 
@@ -41,31 +43,33 @@ function EditAvatar({ cover }) {
         />
         {isOpen && (
           <div className="fixed z-50 top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-70">
-            <div className="bg-black p-8 relative border shadow-lg w-full max-w-md">
-              {/* Close button */}
-              <button
-                className="absolute top-5 right-5 text-white hover:text-gray-200"
-                onClick={() => setIsOpen(false)}
-              >
-                <MdClose size={20} />
-              </button>
-
+            <div className="bg-black relative border shadow-lg w-full max-w-md">
               {/* Content */}
-              <h2 className="text-lg font-bold text-white mb-4">
+              <h2 className="bg-[#222222] px-5 py-4 border-b font-bold text-white text-xl">
                 Change {cover ? "Cover" : "Profile"} Picture
               </h2>
-              <div className="flex flex-col sm:flex-row items-center">
-                <input
-                  type="file"
-                  accept="image/*"
-                  className="bg-black border text-white p-2 mt-2 mr-2 w-full sm:w-auto"
-                  {...register("avatar", {
-                    required: "image is required",
-                  })}
+
+              {/* Close button */}
+              <IoCloseCircleOutline
+                size={30}
+                onClick={() => setIsOpen(false)}
+                className="absolute top-4 right-4 text-white text-2xl cursor-pointer hover:text-red-500 transition"
+              />
+
+              <div className="flex flex-col p-8 items-center">
+                <GetImagePreview
+                  name={"avatar"}
+                  control={control}
+                  cameraIcon
+                  cameraSize={30}
+                  className={
+                    "w-full h-full object-contain min-h-20 max-h-60 bg-[#222222]"
+                  }
+                  image={preImage}
                 />
                 <button
                   type="submit"
-                  className="bg-purple-500 text-white px-4 py-2 mt-4 sm:mt-2 max-sm:w-full"
+                  className="bg-red-500 text-white px-4 py-2 mt-4 w-full hover:bg-gradient-to-r from-red-500 via-orange-500"
                 >
                   Upload
                 </button>

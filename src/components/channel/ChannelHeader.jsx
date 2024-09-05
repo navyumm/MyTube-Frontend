@@ -52,7 +52,10 @@ function ChannelHeader({
                 />
                 {edit && (
                   <div className="absolute inset-0 flex justify-center items-center">
-                    <EditAvatar cover={true} />
+                    <EditAvatar
+                      cover={true}
+                      preImage={coverImage}
+                    />
                   </div>
                 )}
               </div>
@@ -79,7 +82,7 @@ function ChannelHeader({
 
               {edit && (
                 <div className="absolute inset-0 flex justify-center items-start">
-                  <EditAvatar />
+                  <EditAvatar  preImage={avatar} />
                 </div>)
               }
 
@@ -94,17 +97,17 @@ function ChannelHeader({
               <div className="flex gap-1">
                 <p className="text-xs text-slate-400">
                   {localSubscribersCount && localSubscribersCount}{" "}
-                    Subscribers
+                  Subscribers
                 </p>
                 <p className="text-xs text-slate-400">
                   {subscribedCount && subscribedCount}{" "}
-                    Subscribed
+                  Subscribed
                 </p>
               </div>
             </div>
             {user == userProfile && !edit && (
               <Link to={"/edit"}>
-                <Button className="border-slate-500 hover:scale-110 transition-all text-black font-bold px-4 py-1 bg-[#d6685a]">
+                <Button className="border-slate-500 bg-gradient-to-r from-red-500 via-orange-500 to-red-400 transition-all text-black font-bold px-4 py-1 ">
                   Edit
                 </Button>
               </Link>
@@ -112,14 +115,14 @@ function ChannelHeader({
             {user != userProfile && !edit && (
               <Button
                 onClick={handleSubscribe}
-                className="border-slate-500 hover:scale-110 transition-all text-black font-bold px-4 py-1 bg-[#d6685a]"
+                className="border-slate-500 transition-all text-black font-bold px-4 py-1 bg-gradient-to-r from-red-500 via-orange-500 to-red-400"
               >
                 {localIsSubscribed ? "Subscribed" : "Subscribe"}
               </Button>
             )}
             {edit && (
               <Link to={`/channel/${username}`}>
-                <Button className="border-slate-500 hover:scale-110 transition-all text-black font-bold px-4 py-1 bg-[#d6685a]">
+                <Button className="border-slate-500 transition-all text-black font-bold px-4 py-1 bg-gradient-to-r from-red-500 via-orange-500 to-red-400">
                   View Channel
                 </Button>
               </Link>

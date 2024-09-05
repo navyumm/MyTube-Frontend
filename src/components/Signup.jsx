@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { Logo, Button, Input } from "./index";
-import { Controller, useForm } from "react-hook-form";
+import React from "react";
+import { Logo, Button, Input, GetImagePreview } from "./index";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { createAccount, userLogin } from "../store/Slices/authSlice.js";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoginSkeleton from "../skeleton/LoginSkeleton.jsx";
-import { FaCamera } from "react-icons/fa";
 
 function SignUp() {
   const {
@@ -18,23 +17,6 @@ function SignUp() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.auth?.loading);
-  const [avatarPreview, setAvatarPreview] = useState(null);
-  const [coverPreview, setCoverPreview] = useState(null);
-
-  const handleAvatarChange = (e) => {
-    const files = e.target.files;
-    if (files) {
-      setAvatarPreview(URL.createObjectURL(files[0]));
-    }
-    return files;
-  };
-  const handleCoverChange = (e) => {
-    const files = e.target.files;
-    if (files) {
-      setCoverPreview(URL.createObjectURL(files[0]));
-    }
-    return files;
-  };
 
   const submit = async (data) => {
     const response = await dispatch(createAccount(data));
@@ -68,65 +50,27 @@ function SignUp() {
             onSubmit={handleSubmit(submit)}
             className="space-y-4 p-2 text-sm sm:w-96 w-full"
           >
-            <div className="w-full relative h-28 bg-[#222222] rounded-xl">
-              <label
-                htmlFor="coverImage"
-                className="cursor-pointer"
-              >
-                <img
-                  src={coverPreview}
-                  className="object-cover w-full h-full"
-                />
-                <div className="text-sm absolute right-2 bottom-2 bg-[#0F0F0F] p-2 rounded hover:bg-opacity-80">
-                  cover Image
-                </div>
-                <Controller
+            <div className="w-full relative h-24 bg-[#222222] mb-8">
+              <div className="w-full h-full">
+                <GetImagePreview
                   name="coverImage"
                   control={control}
-                  render={({ field: { onChange } }) => (
-                    <input
-                      id="coverImage"
-                      type="file"
-                      className="hidden"
-                      accept="image/png, image/jpeg"
-                      onChange={(e) => {
-                        onChange(handleCoverChange(e));
-                      }}
-                    />
-                  )}
+                  className="w-full h-24 object-cover border-none border-slate-900"
+                  cameraIcon
                 />
-              </label>
-              <label
-                htmlFor="avatar"
-                className="cursor-pointer"
-              >
-                <div className="absolute h-24 w-24 left-2 bottom-2 flex justify-center items-center">
-                  <img
-                    src={avatarPreview}
-                    className=" object-cover w-full h-full border-2 border-double rounded-full"
-                  />
-                  <FaCamera
-                    className="absolute hover:text-red-400"
-                    size={20}
-                  />
+                <div className="text-sm text-gray-400 absolute right-3 bottom-2 hover:red-purple-500 cursor-default">
+                  cover Image
                 </div>
-                <Controller
+              </div>
+              <div className="absolute bg-[#222222] left-5 -bottom-6 rounded-full border-2 ">
+                <GetImagePreview
                   name="avatar"
                   control={control}
-                  render={({ field: { onChange } }) => (
-                    <input
-                      id="avatar"
-                      type="file"
-                      className="hidden"
-                      accept="image/png, image/jpeg"
-                      onChange={(e) => {
-                        onChange(handleAvatarChange(e));
-                      }}
-                    />
-                  )}
-                  rules={{ required: "avatar is required" }}
+                  className="object-cover rounded-full h-20 w-20 outline-none"
+                  cameraIcon={true}
+                  cameraSize={20}
                 />
-              </label>
+              </div>
             </div>
             {errors.avatar && (
               <div className="text-red-500">
@@ -140,7 +84,7 @@ function SignUp() {
               {...register("username", {
                 required: "username is required",
               })}
-              className="h-8"
+              className="h-10"
             />
             {errors.username && (
               <span className="text-red-500">
@@ -154,7 +98,7 @@ function SignUp() {
               {...register("email", {
                 required: "email is required",
               })}
-              className="h-8"
+              className="h-10"
             />
             {errors.email && (
               <span className="text-red-500">
@@ -168,7 +112,7 @@ function SignUp() {
               {...register("fullName", {
                 required: "fullName is required",
               })}
-              className="h-8"
+              className="h-10"
             />
             {errors.fullName && (
               <span className="text-red-500">
@@ -182,7 +126,7 @@ function SignUp() {
               {...register("password", {
                 required: "password is required",
               })}
-              className="h-8"
+              className="h-10"
             />
             {errors.password && (
               <span className="text-red-500">
@@ -192,8 +136,8 @@ function SignUp() {
 
             <Button
               type="submit"
-              bgColor="bg-[#e55542]"
-              className="w-full text-lg py-2 hover:bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 hover:text-white transition duration-200"
+              bgColor="bg-red-500"
+              className="w-full text-lg py-2 hover:bg-gradient-to-r from-red-500 via-orange-500 transition duration-200"
             >
               Signup
             </Button>
@@ -202,7 +146,7 @@ function SignUp() {
               Already have an account?{" "}
               <Link
                 to={"/login"}
-                className="text-[#e55542] cursor-pointer hover:opacity-70"
+                className="text-red-500 text-lg cursor-pointer hover:opacity-70"
               >
                 Login
               </Link>

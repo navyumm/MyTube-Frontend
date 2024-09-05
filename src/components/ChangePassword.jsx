@@ -92,7 +92,7 @@ function ChangePassword() {
           <div className="flex justify-center mt-4">
             <Button
               type="submit"
-              className="bg-red -500 text-white px-4 py-2 rounded"
+              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-gradient-to-r from-red-500 via-orange-500"
             >
               Change Password
             </Button>
