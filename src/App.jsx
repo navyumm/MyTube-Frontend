@@ -17,7 +17,8 @@ import {
     EditChannel,
     HomePage,
     SearchVideos,
-    TermsAndConditions
+    TermsAndConditions,
+    ChannelPlaylist,
 } from "./pages";
 import { EditPersonalInfo, ChangePassword, Layout } from "./components";
 
@@ -35,9 +36,9 @@ function App() {
                     <Route path="" element={<HomePage />} />
                     <Route path="/search/:query" element={<AuthLayout authentication={false}> <SearchVideos /> </AuthLayout>} />
                     <Route path="/channel/:username" element={<AuthLayout authentication> <Channel /> </AuthLayout>}>
-                        <Route path="videos" element={<AuthLayout authentication={false}> <ChannelVideos /> </AuthLayout>} />
-                        <Route path="playlists" element='' />
-                        <Route path="tweets" element={<AuthLayout authentication={false}> <ChannelTweets /> </AuthLayout>} />
+                        <Route path="videos" element={<AuthLayout authentication> <ChannelVideos /> </AuthLayout>} />
+                        <Route path="playlists" element={<AuthLayout authentication> <ChannelPlaylist /> </AuthLayout>} />
+                        <Route path="tweets" element={<AuthLayout authentication> <ChannelTweets /> </AuthLayout>} />
                         <Route path="subscribed" element={<AuthLayout authentication> <ChannelSubscribers /> </AuthLayout>} />
                     </Route>
                     <Route path="/history" element={<AuthLayout authentication> <History /> </AuthLayout>} />

@@ -28,7 +28,7 @@ function SearchVideos() {
         sortType,
       })
     );
-
+    setFilterOpen(false);
     return () => dispatch(makeVideosNull());
   }, [dispatch, query, searchParams]);
 
@@ -167,10 +167,7 @@ function SearchVideos() {
                 <tbody className="flex flex-col gap-2 text-slate-400 cursor-pointer">
                   <tr
                     className="hover:bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:text-white rounded-lg transition duration-200"
-                    onClick={() => {
-                      handleSortParams("createdAt", "desc");
-                      setFilterOpen(false);
-                    }}
+                    onClick={() => handleSortParams("createdAt", "desc")}
                   >
                     <td className="py-2 px-2 sm:px-4">
                       Upload date <span className="text-xs">(Latest)</span>
@@ -178,10 +175,7 @@ function SearchVideos() {
                   </tr>
                   <tr
                     className="hover:bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 hover:text-white rounded-lg transition duration-200"
-                    onClick={() => {
-                      handleSortParams("createdAt", "asc");
-                      setFilterOpen(false);
-                    }}
+                    onClick={() => handleSortParams("createdAt", "asc")}
                   >
                     <td className="py-2 px-2 sm:px-4">
                       Upload date <span className="text-xs">(Oldest)</span>
@@ -189,10 +183,7 @@ function SearchVideos() {
                   </tr>
                   <tr
                     className="hover:bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 hover:text-white rounded-lg transition duration-200"
-                    onClick={() => {
-                      handleSortParams("views", "asc");
-                      setFilterOpen(false);
-                    }}
+                    onClick={() => handleSortParams("views", "asc")}
                   >
                     <td className="py-2 px-2 sm:px-4">
                       View count <span className="text-xs">(Low to High)</span>
@@ -200,10 +191,7 @@ function SearchVideos() {
                   </tr>
                   <tr
                     className="hover:bg-gradient-to-r from-green-500 via-teal-500 to-blue-500 hover:text-white rounded-lg transition duration-200"
-                    onClick={() => {
-                      handleSortParams("views", "desc");
-                      setFilterOpen(false);
-                    }}
+                    onClick={() => handleSortParams("views", "desc")}
                   >
                     <td className="py-2 px-2 sm:px-4">
                       View count <span className="text-xs">(High to Low)</span>
@@ -211,10 +199,7 @@ function SearchVideos() {
                   </tr>
                   <tr
                     className="hover:bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:text-white rounded-lg transition duration-200"
-                    onClick={() => {
-                      handleSortParams("duration", "asc");
-                      setFilterOpen(false);
-                    }}
+                    onClick={() => handleSortParams("duration", "asc")}
                   >
                     <td className="py-2 px-2 sm:px-4">
                       Duration <span className="text-xs">(Low to High)</span>
@@ -222,10 +207,7 @@ function SearchVideos() {
                   </tr>
                   <tr
                     className="hover:bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 hover:text-white rounded-lg transition duration-200"
-                    onClick={() => {
-                      handleSortParams("duration", "desc");
-                      setFilterOpen(false);
-                    }}
+                    onClick={() => handleSortParams("duration", "desc")}
                   >
                     <td className="py-2 px-2 sm:px-4">
                       Duration <span className="text-xs">(High to Low)</span>
