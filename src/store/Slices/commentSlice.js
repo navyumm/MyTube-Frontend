@@ -79,7 +79,7 @@ const commentSlice = createSlice({
         });
         builder.addCase(getVideoComments.fulfilled, (state, action) => {
             state.loading = false;
-            state.comments = [...state.comments, ...action.payload];
+            state.comments = [...state.comments, ...action.payload.docs];
             state.totalComments = action.payload.totalDocs;
             state.hasNextPage = action.payload.hasNextPage;
         });

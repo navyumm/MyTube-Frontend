@@ -15,6 +15,7 @@ import {
     cleanUpComments,
     getVideoComments,
 } from "../store/Slices/commentSlice";
+import HomePage from "./HomePage";
 
 function VideoDetail() {
     const dispatch = useDispatch();
@@ -45,57 +46,68 @@ function VideoDetail() {
     return (
         <>
             <Navbar />
-            <Video
-                src={video?.videoFile?.url}
-                poster={video?.thumbnail?.url}
-            />
-            <Description
-                avatar={video?.owner?.avatar}
-                channelName={video?.owner?.username}
-                createdAt={video?.createdAt}
-                description={video?.description}
-                isSubscribed={video?.owner?.isSubscribed}
-                likesCount={video?.likesCount}
-                subscribersCount={video?.owner?.subscribersCount}
-                title={video?.title}
-                views={video?.views}
-                key={video?._id}
-                isLiked={video?.isLiked}
-                videoId={video?._id}
-                channelId={video?.owner?._id}
-            />
-            <div className="text-white font-semibold sm:px-5 px-3">
-                {totalComments} Comments
-            </div>
-            <TweetAndComment
-                comment={true}
-                videoId={video?._id}
-            />
-            <InfiniteScroll
-                fetchMore={fetchMoreComments}
-                hasNextPage={hasNextPage}
-            >
-                <div className="w-full sm:max-w-4xl">
-                    {comments?.map((comment) => (
-                        <CommentList
-                            key={comment?._id}
-                            avatar={comment?.owner?.avatar}
-                            commentId={comment?._id}
-                            content={comment?.content}
-                            createdAt={comment?.createdAt}
-                            fullName={comment?.owner?.fullName}
-                            isLiked={comment?.isLiked}
-                            likesCount={comment?.likesCount}
-                            username={comment?.owner?.username}
-                        />
-                    ))}
-                    {loading && (
-                        <div className="w-full flex justify-center items-center">
-                            <Spinner width={10} />
+            <div className="flex flex-col lg:flex-row ">
+                <div className="flex-1/3 pt-4 pl-4 h-[89vh] overflow-x-hidden">
+                    <Video
+                        src={video?.videoFile?.url}
+                        poster={video?.thumbnail?.url}
+                    />
+                    <Description
+                        avatar={video?.owner?.avatar}
+                        channelName={video?.owner?.username}
+                        createdAt={video?.createdAt}
+                        description={video?.description}
+                        isSubscribed={video?.owner?.isSubscribed}
+                        likesCount={video?.likesCount}
+                        subscribersCount={video?.owner?.subscribersCount}
+                        title={video?.title}
+                        views={video?.views}
+                        key={video?._id}
+                        isLiked={video?.isLiked}
+                        videoId={video?._id}
+                        channelId={video?.owner?._id}
+                    />
+                    <div className="text-white font-semibold sm:px-5 px-3">
+                        {totalComments} Comments
+                    </div>
+                    <TweetAndComment
+                        comment={true}
+                        videoId={video?._id}
+                    />
+                    <InfiniteScroll
+                        fetchMore={fetchMoreComments}
+                        hasNextPage={hasNextPage}
+                    >
+                        <div className="w-full sm:max-w-6xl px-4">
+                            {comments?.map((comment) => (
+                                <CommentList
+                                    key={comment?._id}
+                                    avatar={comment?.owner?.avatar}
+                                    commentId={comment?._id}
+                                    content={comment?.content}
+                                    createdAt={comment?.createdAt}
+                                    fullName={comment?.owner?.fullName}
+                                    isLiked={comment?.isLiked}
+                                    likesCount={comment?.likesCount}
+                                    username={comment?.owner?.username}
+                                />
+                            ))}
+                            {loading && (
+                                <div className="w-full flex justify-center items-center">
+                                    <Spinner width={10} />
+                                </div>
+                            )}
                         </div>
-                    )}
+                    </InfiniteScroll>
                 </div>
-            </InfiniteScroll>
+                <div className="flex-1">
+                    <HomePage
+                        gridCols="grid-cols-1" 
+                        height="h-[85vh]"
+                        // disableScroll={true}
+                    />
+                </div>
+            </div>
         </>
     );
 }

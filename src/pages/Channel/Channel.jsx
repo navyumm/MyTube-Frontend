@@ -31,7 +31,7 @@ function Channel() {
                 />
             )}
             <ChannelNavigate username={username} />
-            <div className="overflow-y-scroll h-[30rem] sm:h-[36vh] md:h-[50vh] md:mb-2 mt-2">
+            <div className="overflow-y-scroll h-[30rem] sm:h-[36vh] md:h-[45vh] md:mb-2 mt-2">
                 <Outlet />
             </div>
         </>

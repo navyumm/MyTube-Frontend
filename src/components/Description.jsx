@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { timeAgo } from "../helpers/timeAgo";
 import { Like, Button } from "./index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toggleSubscription } from "../store/Slices/subscriptionSlice";
+import AuthLayout from "./AuthLayout";
 
 function Description({
   title,
@@ -19,24 +20,33 @@ function Description({
   videoId,
   channelId,
 }) {
-  const [localIsSubscribed, setLocalIsSubscribed] = useState(isSubscribed);
   const [localSubscribersCount, setLocalSubscribersCount] = useState(subscribersCount);
+  const [showAuthLayout, setShowAuthLayout] = useState(false);
   const dispatch = useDispatch();
 
+  const isAuthenticated = useSelector((state) => state.auth.userData);
+  const globalIsSubscribed = useSelector((state) =>
+    state.subscription.subscribed 
+  );
+
   const handleSubscribe = () => {
-    dispatch(toggleSubscription(channelId));
-    setLocalIsSubscribed((prev) => !prev);
-    if (localIsSubscribed) {
-      setLocalSubscribersCount((prev) => prev - 1);
-    } else {
-      setLocalSubscribersCount((prev) => prev + 1);
+    if (!isAuthenticated) {
+      setShowAuthLayout(true);
+      return;
     }
+
+    dispatch(toggleSubscription(channelId));
   };
 
-  const handleSubsribe = () => { };
+  useEffect(() => {
+    setLocalSubscribersCount((prev) => 
+      globalIsSubscribed ? prev + 1 : prev - 1
+    );
+  }, [globalIsSubscribed]);
+
   return (
     <>
-      <section className="sm:max-w-4xl w-full text-white sm:p-5 p-2 space-y-2">
+      <section className="w-[65vw] text-white sm:p-5 p-2 space-y-2">
         <div className="border-b border-slate-700">
           <div className="space-y-2 mb-2">
             <h1 className="sm:text-2xl font-semibold">{title}</h1>
@@ -49,7 +59,7 @@ function Description({
                   {timeAgo(createdAt)}
                 </span>
               </div>
-              <div className=" rounded-full w-24 flex justify-center bg-[#222222] py-1">
+              <div className="rounded-full w-24 flex justify-center bg-[#222222] py-1">
                 <Like
                   isLiked={isLiked}
                   videoId={videoId}
@@ -58,7 +68,8 @@ function Description({
                 />
               </div>
             </div>
-            <div className="flex gap-2 justify-between items-center">
+            
+            <div className="flex gap-2 min-h-12 justify-between items-center">
               <Link
                 to={`/channel/${channelName}/videos`}
                 className="flex gap-2"
@@ -68,28 +79,34 @@ function Description({
                   className="w-10 h-10 rounded-full object-cover"
                 />
                 <div>
-                  <h1 className="font-semibold">
-                    {channelName}
-                  </h1>
+                  <h1 className="font-semibold">{channelName}</h1>
                   <p className="text-xs text-slate-400">
                     {localSubscribersCount} Subscribers
                   </p>
                 </div>
               </Link>
-              <div onClick={handleSubsribe}>
-                <Button
-                  onClick={handleSubscribe}
-                  className="border-slate-500 hover:scale-110 transition-all text-black font-bold px-4 py-1 bg-[#e55542]"
-                >
-                  {localIsSubscribed
-                    ? "Subscribed"
-                    : "Subscribe"}
-                </Button>
+              <div>
+                {showAuthLayout ? (
+                  <AuthLayout authentication={true}>
+                    <Button
+                      className="border-slate-500 hover:scale-110 transition-all text-black font-bold px-4 py-1 bg-[#e55542] hover:bg-gradient-to-r from-red-500 via-orange-500"
+                    >
+                      Subscribe
+                    </Button>
+                  </AuthLayout>
+                ) : (
+                  <Button
+                    onClick={handleSubscribe}
+                    className="border-slate-500 hover:scale-110 transition-all text-black font-bold px-4 py-1 bg-[#e55542] hover:bg-gradient-to-r from-red-500 via-orange-500"
+                  >
+                    {globalIsSubscribed ? "Subscribed" : "Subscribe"}
+                  </Button>
+                )}
               </div>
             </div>
           </div>
         </div>
-        <p className="text-xs bg-[#222222] rounded-lg p-2 outline-none">
+        <p className="text-xs min-h-12 border border-gray-500 bg-[#222222] rounded-lg p-2 outline-none">
           {description}
         </p>
       </section>
