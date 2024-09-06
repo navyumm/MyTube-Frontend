@@ -67,7 +67,7 @@ export const refreshAccessToken = createAsyncThunk("refreshAccessToken", async (
 export const changePassword = createAsyncThunk("changePassword", async (data) => {
         try {
             const response = await axiosInstance.post("/users/change-password", data);
-            toast.success(response.data?.message);
+            toast.success("Password changed Successfully!!!");
             return response.data;
         } catch (error) {
             toast.error(error?.response?.data?.error);
@@ -81,7 +81,7 @@ export const getCurrentUser = createAsyncThunk("getCurrentUser", async () => {
         const response = await axiosInstance.get("/users/current-user");
         return response.data;
     } catch (error) {
-        toast.error(error?.response?.data?.error || "Invalid access token");
+        // toast.error(error?.response?.data?.error);
         throw error;
     }
 });
