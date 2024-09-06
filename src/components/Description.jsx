@@ -46,7 +46,7 @@ function Description({
 
   return (
     <>
-      <section className="w-[65vw] text-white sm:p-5 p-2 space-y-2">
+      <section className="xl:max-w-5xl w-full text-white sm:p-5 p-2 space-y-2">
         <div className="border-b border-slate-700">
           <div className="space-y-2 mb-2">
             <h1 className="sm:text-2xl font-semibold">{title}</h1>

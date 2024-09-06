@@ -43,7 +43,7 @@ function HomePage({
         <Container>
             <InfiniteScroll fetchMore={fetchMoreVideos} hasNextPage={hasNextPage}>
                 <div
-                    className={`text-white mt-2 mb-16 sm:m-0 sm:mb-2 w-full ${height} grid ${gridCols} ${!disableScroll ? "overflow-y-scroll" : ""}`}
+                    className={`text-white mt-2 mb-16 sm:m-0 sm:mb-2 w-full ${height} grid ${gridCols} ${!disableScroll ? "xl:overflow-y-scroll" : ""}`}
                 >
                     {videos?.length > 0 ? (
                         videos.map((video) => (

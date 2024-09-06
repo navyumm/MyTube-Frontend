@@ -47,7 +47,7 @@ function VideoDetail() {
         <>
             <Navbar />
             <div className="flex flex-col lg:flex-row ">
-                <div className="flex-1/3 pt-4 pl-4 h-[89vh] overflow-x-hidden">
+                <div className="flex-1/3 sm:h-12xl h-[89vh] xl:overflow-x-hidden overflow-auto">
                     <Video
                         src={video?.videoFile?.url}
                         poster={video?.thumbnail?.url}
